@@ -1,1 +1,27 @@
-
+class Solution(object):
+    def convert(self, s, numRows):
+        """
+        :type s: str
+        :type numRows: int
+        :rtype: str
+        """
+        zigStr=''
+        sizeBlk=2*(numRows-1)
+        for i in range(numRows):
+            if i==0 or i==numRows-1:
+                gap=sizeBlk
+                indx=i
+                while indx<len(s):
+                    zigStr+=s[indx]
+                    indx+=gap
+            else:
+                gap1,gap2=2*(numRows-i-1),2*i
+                indx=i
+                while indx<len(s):
+                    zigStr+=s[indx]
+                    indx+=gap1
+                    if indx>=len(s):
+                        break
+                    zigStr+=s[indx]
+                    indx+=gap2
+        return zigStr
