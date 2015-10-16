@@ -5,6 +5,8 @@ class Solution(object):
         :type numRows: int
         :rtype: str
         """
+        if len(s)<=numRows or numRows==1:
+            return s
         zigStr=''
         sizeBlk=2*(numRows-1)
         for i in range(numRows):
