@@ -26,16 +26,26 @@ class Solution(object):
             if flag:
                 return min(nums1[head1],nums2[head2])
             else:
-                return (min(nums1[head1],nums2[head2])+curretn)/2.0
-        if head1==len(nums1):
-            head2+=count/2-i
-            if flag:
-                return nums2[head2]
-            else:
-                return (nums2[head2]+current)/2.0
-        if head2==len(nums2):
-            head1+=count/2-i
+                return (min(nums1[head1],nums2[head2])+current)/2.0
+        elif i==count/2 and head1<len(nums1):
             if flag:
                 return nums1[head1]
             else:
                 return (nums1[head1]+current)/2.0
+        elif i==count/2 and head2<len(nums2):
+            if flag:
+                return nums2[head2]
+            else:
+                return (nums2[head2]+current)/2.0
+        elif head1==len(nums1):
+            head2+=count/2-i
+            if flag:
+                return nums2[head2]
+            else:
+                return (nums2[head2]+nums2[head2-1])/2.0
+        elif head2==len(nums2):
+            head1+=count/2-i
+            if flag:
+                return nums1[head1]
+            else:
+                return (nums1[head1]+nums1[head1-1])/2.0
