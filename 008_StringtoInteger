@@ -1,0 +1,35 @@
+class Solution(object):
+    def myAtoi(self, str):
+        """
+        :type str: str
+        :rtype: int
+        """
+        nums='0123456789'
+        result=0
+        if len(str)==0:
+            return 0
+        i=0
+        while i<len(str):
+            if str[i]==' ' or str[i]==0:
+               i+=1
+               continue
+            if str[i]=='-':
+               sign=-1
+               i+=1
+            elif str[i]=='+':
+               sign=1
+               i+=1
+            else:
+               sign=1
+            break
+        
+        while i<len(str):
+            indx=nums.find(str[i])
+            if indx == -1:
+                break
+            result=result*10+indx
+            i+=1
+        if sign ==1:
+            return min(result,2147483647)
+        else:
+            return max(sign*result,-2147483648)
