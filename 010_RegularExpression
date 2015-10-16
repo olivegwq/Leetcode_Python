@@ -1,0 +1,44 @@
+class Solution(object):
+    def isMatch(self, s, p):
+        """
+        :type s: str
+        :type p: str
+        :rtype: bool
+        """
+        hd1,hd2=0,0
+
+        if len(s)==0 and len(p)==0:
+            return True
+        indx1=s.rfind('*')
+        indx2=p.rfind('*')
+        
+        if indx1>-1 is indx2>-1:
+            hd1=indx1+1
+            hd2=indx2+1
+        elif indx1>-1:
+            hd1=indx1+1
+            if hd1==len(s):
+                return True
+            hd2=len(p)-(len(s)-hd1)
+            if hd2<0 or hd2==len(p):
+                return False
+        else:
+            hd2=indx2+1
+            if hd2==len(p):
+                return True
+            hd1=len(s)-(len(p)-hd2)
+            if hd1<0 or hd1==len(s):
+                return False
+                
+                
+                
+        while hd1<len(s) and hd2<len(p):
+            if s[hd1]==p[hd2] or s[hd1]=='.' or p[hd2]=='.':
+                 hd1+=1
+                 hd2+=1
+            else:
+                 return False
+        if hd1==len(s) and hd2==len(p):
+             return True
+        else:
+             return False
