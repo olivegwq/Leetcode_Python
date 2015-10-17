@@ -1,0 +1,34 @@
+class Solution(object):
+    def intToRoman(self, num):
+        """
+        :type num: int
+        :rtype: str
+        """
+        
+        ArabNum=[1000,500,100,50,10,5,1]
+        RomanNum=['M','D','C','L','X','V','I']
+        Rct=[]
+        RomanStr=''
+        
+        if num>3999 or num<1:
+            return ''
+        
+        for i in range(len(ArabNum)):
+            Rct.append(num/ArabNum[i])
+            num=num%ArabNum[i]
+        for i in range(Rct[0]):
+            RomanStr=RomanStr+'M'
+            
+        for i in range(2,len(ArabNum),2):
+            if Rct[i]==4:
+                if Rct[i-1]:
+                    RomanStr=RomanStr+RomanNum[i]+RomanNum[i-2]
+                else:
+                    RomanStr=RomanStr+RomanNum[i]+RomanNum[i-1]
+            else:
+                for j in range(Rct[i-1]):
+                    RomanStr=RomanStr+RomanNum[i-1]
+                for j in range(Rct[i]):
+                    RomanStr=RomanStr+RomanNum[i]
+        return RomanStr
+            
