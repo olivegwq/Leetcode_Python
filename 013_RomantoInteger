@@ -1,0 +1,22 @@
+class Solution(object):
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        ArabNum=[1000,500,100,50,10,5,1]
+        RomanNum=['M','D','C','L','X','V','I']
+
+        cur,Val=0,0
+        while cur<len(s):
+            indx1=RomanNum.index(s[cur])
+            if cur+1<len(s):
+                indx2=RomanNum.index(s[cur+1])
+                if indx1>indx2:
+                    Val+=ArabNum[indx2]-ArabNum[indx1]
+                    cur+=2
+                    continue
+            Val+=ArabNum[indx1]
+            cur+=1
+        
+        return Val
