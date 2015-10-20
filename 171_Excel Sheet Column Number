@@ -1,13 +1,10 @@
 class Solution(object):
-    def convertToTitle(self, n):
+    def titleToNumber(self, s):
         """
-        :type n: int
-        :rtype: str
+        :type s: str
+        :rtype: int
         """
-        col=''
-      
-        while n:
-            col=chr((n-1)%26+ord('A'))+col
-            n=(n-(n-1)%26)/26
-        
-        return col
+        num=0
+        for i in range(len(s)):
+            num=num*26+ord(s[i])-ord('A')+1
+        return num
