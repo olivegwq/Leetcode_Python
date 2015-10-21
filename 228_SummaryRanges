@@ -1,1 +1,28 @@
-
+class Solution(object):
+    def summaryRanges(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[str]
+        """
+        if not nums:
+            return nums
+        if len(nums)==1:
+            return [str(nums[0])]
+        rlist=[]
+        
+        pos,pre=0,1
+        while pre<len(nums):
+            while nums[pre]-nums[pre-1]==1:
+                pre+=1
+                if pre==len(nums):
+                    break
+            if pre-pos>1:
+                rlist.append(str(nums[pos])+'->'+str(nums[pre-1]))
+            else:
+                rlist.append(str(nums[pos]))
+            pos=pre
+            pre=pre+1
+        if pos==len(nums)-1:
+            rlist.append(str(nums[pos]))
+        return rlist
+            
