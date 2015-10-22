@@ -34,3 +34,19 @@ class Solution(object):
             return True
         else:
             return self.isDescendant(par.left,des) or self.isDescendant(par.right,des)
+
+
+
+###################
+class Solution(object):
+    def lowestCommonAncestor(self, root, p, q):
+        """
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode
+        """
+        a,b=sorted([p.val,q.val])
+        while not a<=root.val<=b:
+            root=root.left if b<root.val else root.right
+        return root
